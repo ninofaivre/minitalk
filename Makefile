@@ -6,7 +6,7 @@
 #    By: nino <nino@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 10:00:05 by nino              #+#    #+#              #
-#    Updated: 2021/09/15 11:07:07 by nino             ###   ########.fr        #
+#    Updated: 2021/10/18 15:18:28 by nino             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = clang
 
 FLAGS = -Wall -Wextra -Werror
 
-LIBFTPRINTF_DIR = ./include/ft_printf
+LIBFTPRINTF_DIR = ./ft_printf
 
 MANDATORY_DIR = ./srcs/mandatory
 BONUS_DIR = ./srcs/bonus

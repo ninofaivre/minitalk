@@ -12,7 +12,7 @@
 
 #include <unistd.h>
 #include <signal.h>
-#include "../../include/ft_printf/ft_printf.h"
+#include "../../ft_printf/ft_printf.h"
 
 static void	handler(int sig, siginfo_t *info, void *context)
 {

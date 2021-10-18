@@ -1,3 +1,3 @@
-[submodule "include/ft_printf"]
-	path = include/ft_printf
-	url = git@github.com:ninofaivre/ft_printf.git
+[submodule "ft_printf"]
+	path = ft_printf
+	url = ./ft_printf
