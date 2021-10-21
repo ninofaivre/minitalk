@@ -6,7 +6,7 @@
 /*   By: nino <nino@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:15:18 by nino              #+#    #+#             */
-/*   Updated: 2021/09/15 10:52:58 by nino             ###   ########.fr       */
+/*   Updated: 2021/10/21 16:08:50 by nino             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ int	main(int argc, char **argv)
 		while (bit--)
 		{
 			if ((argv[2][i] >> bit) & 1)
-				if (!server_pid || kill (server_pid, SIGUSR2) == -1)
+				if (server_pid == -1 || kill (server_pid, SIGUSR2) == -1)
 					return (ft_error (-1));
 			if (!((argv[2][i] >> bit) & 1))
-				if (!server_pid || kill (server_pid, SIGUSR1) == -1)
+				if (server_pid == -1 || kill (server_pid, SIGUSR1) == -1)
 					return (ft_error (-1));
 			pause ();
 		}
