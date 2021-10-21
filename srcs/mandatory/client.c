@@ -6,7 +6,7 @@
 /*   By: nino <nino@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:15:18 by nino              #+#    #+#             */
-/*   Updated: 2021/10/21 16:08:50 by nino             ###   ########.fr       */
+/*   Updated: 2021/10/21 16:15:47 by nino             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,13 @@ static int	ft_atoi(char const *s)
 	long int	i;
 
 	i = 0;
+	if (*s == '-')
+		return (-1);
 	while (*s >= '0' && *s <= '9' && i <= 2147483647)
 		i = i * 10 + (long int)*s++ - 48;
 	if (i > 2147483647)
+		return (-1);
+	if (!i)
 		return (-1);
 	return ((int)i);
 }
