@@ -3,52 +3,49 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nino <nino@student.42.fr>                  +#+  +:+       +#+         #
+#    By: nfaivre <nfaivre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 10:00:05 by nino              #+#    #+#              #
-#    Updated: 2021/10/18 15:18:28 by nino             ###   ########.fr        #
+#    Updated: 2021/11/30 23:00:29 by nfaivre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+.DEFAULT_GOAL = all
+
+NAME = client server
+
 CC = clang
+CFLAGS = -Wall -Werror -Wextra
 
-FLAGS = -Wall -Wextra -Werror
+DIR_SRC = src
+DIR_OBJ = .obj
 
-LIBFTPRINTF_DIR = ./ft_printf
+INCLUDE = -Ift_printf/include
 
-MANDATORY_DIR = ./srcs/mandatory
-BONUS_DIR = ./srcs/bonus
+SRC = $(wildcard $(DIR_SRC)/*.c)
+OBJ = $(addprefix $(DIR_OBJ)/, $(notdir $(SRC:.c=.o)))
 
-NAME = client
-NAME2 = server
-OBJS = $(NAME) $(NAME2)
+mkdir_DIR_OBJ:
+	mkdir -p $(DIR_OBJ)
 
-all: $(NAME) $(NAME2)
+$(DIR_OBJ)/%.o : $(DIR_SRC)/%.c
+	$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDE)
 
 $(NAME):
-	@make -C $(LIBFTPRINTF_DIR)
-	@$(CC) -o $(NAME) $(FLAGS) $(addprefix $(MANDATORY_DIR)/, $(NAME).c) $(addprefix $(LIBFTPRINTF_DIR)/, libftprintf.a)
-	@echo "compiling $(NAME).c libftprintf.a to $(NAME)"
+	$(CC) $(CFLAGS) $(word 1, $(OBJ)) -o $(word 1, $(NAME)) -Lft_printf -l:libftprintf.a
+	$(CC) $(CFLAGS) $(word 2, $(OBJ)) -o $(word 2, $(NAME)) -Lft_printf -l:libftprintf.a
 
-$(NAME2):
-	@$(CC) -o $(NAME2) $(FLAGS) $(addprefix $(MANDATORY_DIR)/, $(NAME2).c) $(addprefix $(LIBFTPRINTF_DIR)/, libftprintf.a)
-	@echo "compiling $(NAME2).c libftprintf.a to $(NAME2)"
+all: mkdir_DIR_OBJ $(OBJ) $(NAME)
 
-bonus:
-	@make -C $(LIBFTPRINTF_DIR)
-	@$(CC) -o client $(FLAGS) $(addprefix $(BONUS_DIR)/, client_bonus.c) $(addprefix $(LIBFTPRINTF_DIR)/, libftprintf.a)
-	@echo "compiling $(NAME)_bonus.c libftprintf.a to $(NAME)"
-	@$(CC) -o server $(FLAGS) $(addprefix $(BONUS_DIR)/, server_bonus.c) $(addprefix $(LIBFTPRINTF_DIR)/, libftprintf.a)
-	@echo "compiling $(NAME2)_bonus.c libftprintf.a to $(NAME2)"
+bonus: all
 
 clean:
-	@rm -f $(OBJS)
-	@make clean -C $(LIBFTPRINTF_DIR)
-	@echo "removing ${OBJS}"
+	rm -f $(OBJ)
 
 fclean: clean
-	@make fclean -C $(LIBFTPRINTF_DIR)
+	rm -f $(NAME)
+	rm -rf $(DIR_OBJ)
 
 re: fclean all
 
-.PHONY: fclean re norme all clean
+.PHONY: all clean re

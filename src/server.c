@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nino <nino@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: nfaivre <nfaivre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 13:20:25 by nino              #+#    #+#             */
-/*   Updated: 2021/09/15 10:53:22 by nino             ###   ########.fr       */
+/*   Updated: 2021/11/30 22:23:11 by nfaivre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <signal.h>
-#include "../../ft_printf/ft_printf.h"
+#include "ft_printf.h"
 
 static void	handler(int sig, siginfo_t *info, void *context)
 {
