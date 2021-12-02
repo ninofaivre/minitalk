@@ -33,8 +33,8 @@ $(DIR_OBJ)/%.o : $(DIR_SRC)/%.c
 
 $(NAME):
 	make -C ft_printf
-	$(CC) $(CFLAGS) $(word 1, $(OBJ)) -o $(word 1, $(NAME)) -Lft_printf -l:libftprintf.a
-	$(CC) $(CFLAGS) $(word 2, $(OBJ)) -o $(word 2, $(NAME)) -Lft_printf -l:libftprintf.a
+	$(CC) $(CFLAGS) $(word 1, $(OBJ)) -o $(word 1, $(NAME)) -Lft_printf -lftprintf
+	$(CC) $(CFLAGS) $(word 2, $(OBJ)) -o $(word 2, $(NAME)) -Lft_printf -lftprintf
 
 all: mkdir_DIR_OBJ $(OBJ) $(NAME)
 
